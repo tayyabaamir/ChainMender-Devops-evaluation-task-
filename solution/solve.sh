@@ -3,4 +3,4 @@
 set -e
 
 cd /app
-bash /app/solution/fix_services.sh
+bash /solution/fix_services.sh

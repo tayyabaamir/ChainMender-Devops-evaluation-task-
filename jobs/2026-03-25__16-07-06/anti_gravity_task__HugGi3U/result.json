@@ -1,0 +1,97 @@
+{
+    "id": "8e85d046-fcb1-434d-9728-f0250d6d233e",
+    "task_name": "anti_gravity_task",
+    "trial_name": "anti_gravity_task__HugGi3U",
+    "trial_uri": "file:///C:/Users/hp/.gemini/antigravity/scratch/anti_gravity_task/jobs/2026-03-25__16-07-06/anti_gravity_task__HugGi3U",
+    "task_id": {
+        "path": "."
+    },
+    "source": null,
+    "task_checksum": "e5c6583ca28ddee6be309d109c6cfcd5ed90982f4d70e766d58e90334007dc02",
+    "config": {
+        "task": {
+            "path": ".",
+            "git_url": null,
+            "git_commit_id": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "anti_gravity_task__HugGi3U",
+        "trials_dir": "jobs\\2026-03-25__16-07-06",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "oracle",
+            "import_path": null,
+            "model_name": null,
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "kwargs": {},
+            "env": {}
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "suppress_override_warnings": false,
+            "mounts_json": null,
+            "env": {},
+            "kwargs": {}
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "job_id": "5b112632-8a3c-45c4-8d70-8373a236a3f7"
+    },
+    "agent_info": {
+        "name": "oracle",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": null,
+    "exception_info": {
+        "exception_type": "RewardFileNotFoundError",
+        "exception_message": "No reward file found at jobs\\2026-03-25__16-07-06\\anti_gravity_task__HugGi3U\\verifier\\reward.txt or jobs\\2026-03-25__16-07-06\\anti_gravity_task__HugGi3U\\verifier\\reward.json",
+        "exception_traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\hp\\AppData\\Roaming\\uv\\tools\\harbor\\Lib\\site-packages\\harbor\\trial\\trial.py\", line 545, in run\n    await self._run_verification()\n  File \"C:\\Users\\hp\\AppData\\Roaming\\uv\\tools\\harbor\\Lib\\site-packages\\harbor\\trial\\trial.py\", line 289, in _run_verification\n    await self._verify_with_retry()\n  File \"C:\\Users\\hp\\AppData\\Roaming\\uv\\tools\\harbor\\Lib\\site-packages\\tenacity\\asyncio\\__init__.py\", line 193, in async_wrapped\n    return await copy(fn, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hp\\AppData\\Roaming\\uv\\tools\\harbor\\Lib\\site-packages\\tenacity\\asyncio\\__init__.py\", line 112, in __call__\n    do = await self.iter(retry_state=retry_state)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hp\\AppData\\Roaming\\uv\\tools\\harbor\\Lib\\site-packages\\tenacity\\asyncio\\__init__.py\", line 157, in iter\n    result = await action(retry_state)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hp\\AppData\\Roaming\\uv\\tools\\harbor\\Lib\\site-packages\\tenacity\\_utils.py\", line 111, in inner\n    return call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hp\\AppData\\Roaming\\uv\\tools\\harbor\\Lib\\site-packages\\tenacity\\__init__.py\", line 393, in <lambda>\n    self._add_action_func(lambda rs: rs.outcome.result())\n                                     ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hp\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\concurrent\\futures\\_base.py\", line 449, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hp\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\concurrent\\futures\\_base.py\", line 401, in __get_result\n    raise self._exception\n  File \"C:\\Users\\hp\\AppData\\Roaming\\uv\\tools\\harbor\\Lib\\site-packages\\tenacity\\asyncio\\__init__.py\", line 116, in __call__\n    result = await fn(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hp\\AppData\\Roaming\\uv\\tools\\harbor\\Lib\\site-packages\\harbor\\trial\\trial.py\", line 307, in _verify_with_retry\n    self.result.verifier_result = await asyncio.wait_for(\n                                  ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hp\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"C:\\Users\\hp\\AppData\\Roaming\\uv\\tools\\harbor\\Lib\\site-packages\\harbor\\verifier\\verifier.py\", line 147, in verify\n    raise RewardFileNotFoundError(\nharbor.verifier.verifier.RewardFileNotFoundError: No reward file found at jobs\\2026-03-25__16-07-06\\anti_gravity_task__HugGi3U\\verifier\\reward.txt or jobs\\2026-03-25__16-07-06\\anti_gravity_task__HugGi3U\\verifier\\reward.json\n",
+        "occurred_at": "2026-03-25T16:07:38.451031"
+    },
+    "started_at": "2026-03-25T11:07:16.502337Z",
+    "finished_at": "2026-03-25T11:07:40.405524Z",
+    "environment_setup": {
+        "started_at": "2026-03-25T11:07:17.046590Z",
+        "finished_at": "2026-03-25T11:07:26.269222Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-03-25T11:07:26.269222Z",
+        "finished_at": "2026-03-25T11:07:26.269222Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-03-25T11:07:26.269222Z",
+        "finished_at": "2026-03-25T11:07:27.679446Z"
+    },
+    "verifier": {
+        "started_at": "2026-03-25T11:07:27.679446Z",
+        "finished_at": "2026-03-25T11:07:38.445824Z"
+    }
+}
