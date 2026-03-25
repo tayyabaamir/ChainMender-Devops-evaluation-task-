@@ -1,0 +1,7 @@
+[task]
+name = "microservice_dependency_fix"
+description = "Debug and fix a broken three-service microservice chain with circular dependencies, port misconfiguration, endpoint mismatches, and response format errors"
+difficulty = "hard"
+
+[environment.runtime]
+python = "3.12"
