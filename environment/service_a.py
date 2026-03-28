@@ -13,9 +13,8 @@ from flask import Flask, request, jsonify
 import requests as http_requests
 
 from config import SERVICE_B_URL, REQUEST_TIMEOUT, LOG_LEVEL
-from service_c import format_response  # Shared response formatter utility
+from service_c import format_response
 
-# Configure logging
 logging.basicConfig(
     level=getattr(logging, LOG_LEVEL),
     format='%(asctime)s [%(name)s] %(levelname)s: %(message)s',
@@ -27,22 +26,14 @@ app = Flask(__name__)
 
 
 def validate_request(req):
-    """
-    Validates incoming HTTP requests.
-    Checks for required authentication headers on protected endpoints.
-    Returns True if request is allowed, False otherwise.
-    """
-    # Public endpoints accessible without authentication
     public_paths = ['/', '/health']
     if req.path in public_paths:
         return True
 
-    # Check for service auth token
     auth_token = req.headers.get('X-Auth-Token')
     if auth_token and len(auth_token) > 0:
         return True
 
-    # Allow internal inter-service requests
     if req.headers.get('X-Internal-Request') == 'true':
         return True
 
@@ -51,13 +42,11 @@ def validate_request(req):
 
 @app.before_request
 def before_request_handler():
-    """Log all incoming requests for debugging"""
     logger.debug(f"Incoming request: {request.method} {request.path}")
 
 
 @app.route('/')
 def index():
-    """Root endpoint - returns service status"""
     logger.info("Service A index endpoint called")
     return jsonify(format_response({
         "service": "service_a",
@@ -68,21 +57,14 @@ def index():
 
 @app.route('/health')
 def health():
-    """Health check endpoint for load balancer and monitoring"""
     return jsonify({"status": "healthy", "service": "service_a"}), 200
 
 
 @app.route('/request_chain')
 def request_chain():
-    """
-    Initiates a request chain through all microservices.
-    Flow: Client -> Service A -> Service B -> Service C
-    Returns aggregated responses from all services in the chain.
-    """
     logger.info("Initiating request chain: A -> B -> C")
 
     try:
-        # Forward request to Service B for processing
         response = http_requests.get(
             f"{SERVICE_B_URL}/api/v1/process",
             timeout=REQUEST_TIMEOUT,
@@ -96,14 +78,12 @@ def request_chain():
 
         chain_data = response.json()
 
-        # Build aggregated response
         result = {
             "status": "service_a_ok",
             "service_a_ok": True,
             "downstream": chain_data
         }
 
-        # Propagate downstream status flags for easy checking
         if chain_data.get("service_b_ok"):
             result["service_b_ok"] = True
         downstream_c = chain_data.get("downstream", {})

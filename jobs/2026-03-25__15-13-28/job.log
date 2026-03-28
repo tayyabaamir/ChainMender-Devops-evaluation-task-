@@ -1,3 +1,0 @@
-Trial anti_gravity_task__Hi7G7wv failed: No reward file found at jobs\2026-03-25__15-13-28\anti_gravity_task__Hi7G7wv\verifier\reward.txt or jobs\2026-03-25__15-13-28\anti_gravity_task__Hi7G7wv\verifier\reward.json
-Exception RewardFileNotFoundError is in exclude_exceptions, not retrying
-Not retrying trial because the exception is not in include_exceptions or the maximum number of retries has been reached

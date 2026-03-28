@@ -14,7 +14,6 @@ import requests as http_requests
 
 from config import SERVICE_C_URL, REQUEST_TIMEOUT, LOG_LEVEL
 
-# Configure logging
 logging.basicConfig(
     level=getattr(logging, LOG_LEVEL),
     format='%(asctime)s [%(name)s] %(levelname)s: %(message)s',
@@ -27,14 +26,12 @@ app = Flask(__name__)
 
 @app.before_request
 def log_request():
-    """Log incoming requests for debugging and tracing"""
     logger.debug(f"Received: {request.method} {request.path}")
     logger.debug(f"From: {request.headers.get('X-Request-Source', 'unknown')}")
 
 
 @app.route('/')
 def index():
-    """Root endpoint - returns service status"""
     return jsonify({
         "service": "service_b",
         "status": "service_b_ok",
@@ -44,30 +41,20 @@ def index():
 
 @app.route('/health')
 def health():
-    """Health check endpoint"""
     return jsonify({"status": "healthy", "service": "service_b"}), 200
 
 
 @app.route('/api/process')
 def process_request():
-    """
-    Process endpoint - receives requests from Service A
-    and fetches data from Service C.
-
-    Expects Service C to return a JSON response which is
-    then wrapped with Service B's own status information.
-    """
     logger.info("Processing request - fetching data from Service C")
 
     try:
-        # Forward authentication headers to downstream service
         downstream_headers = {
             "X-Auth-Token": request.headers.get("X-Auth-Token", ""),
             "X-Internal-Request": "true",
             "X-Request-Source": "service_b"
         }
 
-        # Call Service C data endpoint
         response = http_requests.get(
             f"{SERVICE_C_URL}/api/data",
             timeout=REQUEST_TIMEOUT,
@@ -75,7 +62,6 @@ def process_request():
         )
         response.raise_for_status()
 
-        # Parse JSON response from Service C
         service_c_data = response.json()
 
         result = {
