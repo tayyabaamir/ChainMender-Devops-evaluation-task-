@@ -1,5 +1,5 @@
 def main():
-    print("Hello from anti-gravity-task!")
+    print("Hello from ChainMender!")
 
 
 if __name__ == "__main__":
