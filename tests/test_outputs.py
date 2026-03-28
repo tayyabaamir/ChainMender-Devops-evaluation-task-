@@ -199,8 +199,10 @@ class TestRequestChain:
 
 
 def test_generate_reward():
-    with open("reward.txt", "w") as f:
+    reward_dir = "/logs/verifier"
+    os.makedirs(reward_dir, exist_ok=True)
+    with open(os.path.join(reward_dir, "reward.txt"), "w") as f:
         f.write("1.0\n")
     import json
-    with open("reward.json", "w") as f:
+    with open(os.path.join(reward_dir, "reward.json"), "w") as f:
         json.dump({"reward": 1.0}, f)
